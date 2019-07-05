@@ -27,9 +27,19 @@ final class ResourceClassResolver implements ResourceClassResolverInterface
 {
     use ClassInfoTrait;
 
+    /**
+     * @var ResourceNameCollectionFactoryInterface 
+     */
     private $resourceNameCollectionFactory;
+
+    /**
+     * @var array 
+     */
     private $localIsResourceClassCache = [];
 
+    /**
+     * @param ResourceNameCollectionFactoryInterface $resourceNameCollectionFactory
+     */
     public function __construct(ResourceNameCollectionFactoryInterface $resourceNameCollectionFactory)
     {
         $this->resourceNameCollectionFactory = $resourceNameCollectionFactory;

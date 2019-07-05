@@ -40,6 +40,9 @@ trait AttributesHydratorTrait
     public $attributes = null;
 
     /**
+     * @param array $values
+     *
+     * @throws \ReflectionException
      * @throws InvalidArgumentException
      */
     private function hydrateAttributes(array $values): void

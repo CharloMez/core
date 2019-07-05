@@ -30,6 +30,8 @@ final class OperationTypeDeprecationHelper
 {
     /**
      * @param string|bool $operationType
+     *
+     * @return string
      */
     public static function getOperationType($operationType): string
     {

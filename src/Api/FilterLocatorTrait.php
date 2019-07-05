@@ -25,12 +25,16 @@ use Psr\Container\ContainerInterface;
  */
 trait FilterLocatorTrait
 {
+    /**
+     * @var ContainerInterface|FilterCollection|null
+     */
     private $filterLocator;
 
     /**
      * Sets a filter locator with a backward compatibility.
      *
-     * @param ContainerInterface|FilterCollection|null $filterLocator
+     * @param ContainerInterface|FilterCollection|null  $filterLocator
+     * @param bool                                      $allowNull
      */
     private function setFilterLocator($filterLocator, bool $allowNull = false): void
     {
@@ -47,6 +51,10 @@ trait FilterLocatorTrait
 
     /**
      * Gets a filter with a backward compatibility.
+     *
+     * @param string $filterId
+     *
+     * @return FilterInterface|null
      */
     private function getFilter(string $filterId): ?FilterInterface
     {

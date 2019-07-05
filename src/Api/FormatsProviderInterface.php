@@ -22,6 +22,10 @@ interface FormatsProviderInterface
 {
     /**
      * Finds formats for an operation.
+     * 
+     * @param array $attributes
+     *
+     * @return array
      */
     public function getFormatsFromAttributes(array $attributes): array;
 }

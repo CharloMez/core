@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace ApiPlatform\Core\Api;
 
+use ApiPlatform\Core\Exception\PropertyNotFoundException;
+use ApiPlatform\Core\Exception\ResourceClassNotFoundException;
 use ApiPlatform\Core\Exception\RuntimeException;
 use ApiPlatform\Core\Metadata\Property\Factory\PropertyMetadataFactoryInterface;
 use ApiPlatform\Core\Metadata\Property\Factory\PropertyNameCollectionFactoryInterface;
@@ -29,10 +31,27 @@ final class IdentifiersExtractor implements IdentifiersExtractorInterface
 {
     use ResourceClassInfoTrait;
 
+    /**
+     * @var PropertyNameCollectionFactoryInterface
+     */
     private $propertyNameCollectionFactory;
+
+    /**
+     * @var PropertyMetadataFactoryInterface
+     */
     private $propertyMetadataFactory;
+
+    /**
+     * @var PropertyAccessorInterface
+     */
     private $propertyAccessor;
 
+    /**
+     * @param PropertyNameCollectionFactoryInterface    $propertyNameCollectionFactory
+     * @param PropertyMetadataFactoryInterface          $propertyMetadataFactory
+     * @param PropertyAccessorInterface|null            $propertyAccessor
+     * @param ResourceClassResolverInterface|null       $resourceClassResolver
+     */
     public function __construct(PropertyNameCollectionFactoryInterface $propertyNameCollectionFactory, PropertyMetadataFactoryInterface $propertyMetadataFactory, PropertyAccessorInterface $propertyAccessor = null, ResourceClassResolverInterface $resourceClassResolver = null)
     {
         $this->propertyNameCollectionFactory = $propertyNameCollectionFactory;
@@ -62,6 +81,9 @@ final class IdentifiersExtractor implements IdentifiersExtractorInterface
 
     /**
      * {@inheritdoc}
+     *
+     * @throws PropertyNotFoundException
+     * @throws ResourceClassNotFoundException
      */
     public function getIdentifiersFromItem($item): array
     {

@@ -20,8 +20,14 @@ namespace ApiPlatform\Core\Api;
  */
 final class FormatMatcher
 {
+    /**
+     * @var array
+     */
     private $formats;
 
+    /**
+     * @param array $formats
+     */
     public function __construct(array $formats)
     {
         $normalizedFormats = [];
@@ -35,6 +41,10 @@ final class FormatMatcher
      * Gets the format associated with the mime type.
      *
      * Adapted from {@see \Symfony\Component\HttpFoundation\Request::getFormat}.
+     *
+     * @param string $mimeType
+     *
+     * @return string|null
      */
     public function getFormat(string $mimeType): ?string
     {

@@ -22,13 +22,22 @@ use ApiPlatform\Core\Metadata\Resource\ResourceNameCollection;
  */
 final class Entrypoint
 {
+    /**
+     * @var ResourceNameCollection
+     */
     private $resourceNameCollection;
 
+    /**
+     * @param ResourceNameCollection $resourceNameCollection
+     */
     public function __construct(ResourceNameCollection $resourceNameCollection)
     {
         $this->resourceNameCollection = $resourceNameCollection;
     }
 
+    /**
+     * @return ResourceNameCollection
+     */
     public function getResourceNameCollection(): ResourceNameCollection
     {
         return $this->resourceNameCollection;

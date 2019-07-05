@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace ApiPlatform\Core\Api;
 
 use ApiPlatform\Core\Exception\InvalidArgumentException;
+use ApiPlatform\Core\Exception\ResourceClassNotFoundException;
 use ApiPlatform\Core\Metadata\Resource\Factory\ResourceMetadataFactoryInterface;
 
 /**
@@ -23,9 +24,20 @@ use ApiPlatform\Core\Metadata\Resource\Factory\ResourceMetadataFactoryInterface;
  */
 final class FormatsProvider implements FormatsProviderInterface, OperationAwareFormatsProviderInterface
 {
+    /**
+     * @var array 
+     */
     private $configuredFormats;
+
+    /**
+     * @var ResourceMetadataFactoryInterface 
+     */
     private $resourceMetadataFactory;
 
+    /**
+     * @param ResourceMetadataFactoryInterface  $resourceMetadataFactory
+     * @param array                             $configuredFormats
+     */
     public function __construct(ResourceMetadataFactoryInterface $resourceMetadataFactory, array $configuredFormats)
     {
         $this->resourceMetadataFactory = $resourceMetadataFactory;
@@ -36,6 +48,7 @@ final class FormatsProvider implements FormatsProviderInterface, OperationAwareF
      * {@inheritdoc}
      *
      * @throws InvalidArgumentException
+     * @throws ResourceClassNotFoundException
      */
     public function getFormatsFromAttributes(array $attributes): array
     {
@@ -60,6 +73,7 @@ final class FormatsProvider implements FormatsProviderInterface, OperationAwareF
      * {@inheritdoc}
      *
      * @throws InvalidArgumentException
+     * @throws ResourceClassNotFoundException
      */
     public function getFormatsFromOperation(string $resourceClass, string $operationName, string $operationType): array
     {
@@ -78,6 +92,10 @@ final class FormatsProvider implements FormatsProviderInterface, OperationAwareF
 
     /**
      * Filter and populate the acceptable formats.
+     *
+     * @param array $annotationFormats
+     *
+     * @return array
      *
      * @throws InvalidArgumentException
      */

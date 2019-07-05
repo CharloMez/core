@@ -24,6 +24,9 @@ use Psr\Container\ContainerInterface;
  */
 class FilterCollectionFactory
 {
+    /**
+     * @var string[]
+     */
     private $filtersIds;
 
     /**
@@ -36,6 +39,10 @@ class FilterCollectionFactory
 
     /**
      * Creates a filter collection from a filter locator.
+     *
+     * @param ContainerInterface $filterLocator
+     *
+     * @return FilterCollection
      */
     public function createFilterCollectionFromLocator(ContainerInterface $filterLocator): FilterCollection
     {

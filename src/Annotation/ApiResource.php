@@ -313,7 +313,10 @@ final class ApiResource
     private $openapiContext;
 
     /**
+     * @param array $values
+     *
      * @throws InvalidArgumentException
+     * @throws \ReflectionException
      */
     public function __construct(array $values = [])
     {

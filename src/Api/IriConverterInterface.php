@@ -37,7 +37,10 @@ interface IriConverterInterface
     /**
      * Gets the IRI associated with the given item.
      *
-     * @param object $item
+     * @param object    $item
+     * @param int       $referenceType
+     *
+     * @return string
      *
      * @throws InvalidArgumentException
      * @throws RuntimeException
@@ -47,6 +50,11 @@ interface IriConverterInterface
     /**
      * Gets the IRI associated with the given resource collection.
      *
+     * @param string    $resourceClass
+     * @param int       $referenceType
+     *
+     * @return string
+     *
      * @throws InvalidArgumentException
      */
     public function getIriFromResourceClass(string $resourceClass, int $referenceType = UrlGeneratorInterface::ABS_PATH): string;
@@ -54,12 +62,24 @@ interface IriConverterInterface
     /**
      * Gets the item IRI associated with the given resource.
      *
+     * @param string    $resourceClass
+     * @param array     $identifiers
+     * @param int       $referenceType
+     *
+     * @return string
+     *
      * @throws InvalidArgumentException
      */
     public function getItemIriFromResourceClass(string $resourceClass, array $identifiers, int $referenceType = UrlGeneratorInterface::ABS_PATH): string;
 
     /**
      * Gets the IRI associated with the given resource subresource.
+     *
+     * @param string    $resourceClass
+     * @param array     $identifiers
+     * @param int       $referenceType
+     *
+     * @return string
      *
      * @throws InvalidArgumentException
      */

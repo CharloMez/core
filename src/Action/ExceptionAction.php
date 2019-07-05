@@ -41,13 +41,25 @@ use Symfony\Component\Serializer\SerializerInterface;
  */
 final class ExceptionAction
 {
+    /**
+     * @var SerializerInterface
+     */
     private $serializer;
+
+    /**
+     * @var array
+     */
     private $errorFormats;
+
+    /**
+     * @var array
+     */
     private $exceptionToStatus;
 
     /**
-     * @param array $errorFormats      A list of enabled formats, the first one will be the default
-     * @param array $exceptionToStatus A list of exceptions mapped to their HTTP status code
+     * @param SerializerInterface   $serializer
+     * @param array                 $errorFormats      A list of enabled formats, the first one will be the default
+     * @param array                 $exceptionToStatus A list of exceptions mapped to their HTTP status code
      */
     public function __construct(SerializerInterface $serializer, array $errorFormats, array $exceptionToStatus = [])
     {
@@ -57,7 +69,10 @@ final class ExceptionAction
     }
 
     /**
-     * Converts a an exception to a JSON response.
+     * @param FlattenException  $exception
+     * @param Request           $request
+     *
+     * @return Response
      */
     public function __invoke(FlattenException $exception, Request $request): Response
     {

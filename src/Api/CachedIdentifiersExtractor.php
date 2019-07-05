@@ -30,12 +30,37 @@ final class CachedIdentifiersExtractor implements IdentifiersExtractorInterface
 
     public const CACHE_KEY_PREFIX = 'iri_identifiers';
 
+    /**
+     * @var CacheItemPoolInterface
+     */
     private $cacheItemPool;
+
+    /**
+     * @var PropertyAccessorInterface
+     */
     private $propertyAccessor;
+
+    /**
+     * @var IdentifiersExtractorInterface
+     */
     private $decorated;
+
+    /**
+     * @var array
+     */
     private $localCache = [];
+
+    /**
+     * @var array
+     */
     private $localResourceCache = [];
 
+    /**
+     * @param CacheItemPoolInterface                $cacheItemPool
+     * @param IdentifiersExtractorInterface         $decorated
+     * @param PropertyAccessorInterface|null        $propertyAccessor
+     * @param ResourceClassResolverInterface|null   $resourceClassResolver
+     */
     public function __construct(CacheItemPoolInterface $cacheItemPool, IdentifiersExtractorInterface $decorated, PropertyAccessorInterface $propertyAccessor = null, ResourceClassResolverInterface $resourceClassResolver = null)
     {
         $this->cacheItemPool = $cacheItemPool;
@@ -105,6 +130,12 @@ final class CachedIdentifiersExtractor implements IdentifiersExtractorInterface
         return $identifiers;
     }
 
+    /**
+     * @param mixed     $item
+     * @param callable  $retriever
+     * 
+     * @return array
+     */
     private function getKeys($item, callable $retriever): array
     {
         $resourceClass = $this->getObjectClass($item);

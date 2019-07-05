@@ -24,6 +24,11 @@ use Psr\Container\ContainerInterface;
  */
 final class FilterCollection extends \ArrayObject
 {
+    /**
+     * @param array     $input
+     * @param int       $flags
+     * @param string    $iterator_class
+     */
     public function __construct($input = [], $flags = 0, $iterator_class = 'ArrayIterator')
     {
         @trigger_error(sprintf('The %s class is deprecated since version 2.1 and will be removed in 3.0. Provide an implementation of %s instead.', self::class, ContainerInterface::class), E_USER_DEPRECATED);

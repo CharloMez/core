@@ -25,8 +25,11 @@ interface ResourceClassResolverInterface
     /**
      * Guesses the associated resource.
      *
-     * @param string $resourceClass The expected resource class
-     * @param bool   $strict        If true, value must match the expected resource class
+     * @param mixed         $value
+     * @param string|null   $resourceClass The expected resource class
+     * @param bool          $strict        If true, value must match the expected resource class
+     *
+     * @return string
      *
      * @throws InvalidArgumentException
      */
@@ -34,6 +37,10 @@ interface ResourceClassResolverInterface
 
     /**
      * Is the given class a resource class?
+     *
+     * @param string $type
+     *
+     * @return bool
      */
     public function isResourceClass(string $type): bool;
 }

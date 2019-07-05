@@ -22,6 +22,12 @@ interface OperationAwareFormatsProviderInterface extends FormatsProviderInterfac
 {
     /**
      * Finds formats for an operation.
+     *
+     * @param string $resourceClass
+     * @param string $operationName
+     * @param string $operationType
+     *
+     * @return array
      */
     public function getFormatsFromOperation(string $resourceClass, string $operationName, string $operationType): array;
 }
